@@ -1,0 +1,118 @@
+/* HelioCast-L1 Aerospace HUD Theme */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-primary: #070b14;
+    --bg-card: rgba(15, 23, 42, 0.75);
+    --border-color: rgba(56, 189, 248, 0.2);
+    --accent-cyan: #00f0ff;
+    --accent-gold: #ffb703;
+    --accent-danger: #ff0055;
+    --accent-success: #00ff88;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+body, .stApp {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Glassmorphism Cards */
+.mission-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.mission-card:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Glowing Telemetry Pills */
+.telemetry-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.pill-nominal {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--accent-success);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.pill-warning {
+    background: rgba(255, 183, 3, 0.15);
+    color: var(--accent-gold);
+    border: 1px solid rgba(255, 183, 3, 0.4);
+    animation: pulse-warning 2s infinite;
+}
+
+.pill-critical {
+    background: rgba(255, 0, 85, 0.2);
+    color: var(--accent-danger);
+    border: 1px solid rgba(255, 0, 85, 0.6);
+    animation: flash-critical 1.2s infinite;
+}
+
+/* Animated Alert Banners */
+.alert-banner-forecast {
+    background: linear-gradient(90deg, rgba(255, 183, 3, 0.2) 0%, rgba(255, 85, 0, 0.15) 100%);
+    border-left: 6px solid var(--accent-gold);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(255, 183, 3, 0.2);
+}
+
+.alert-banner-nowcast {
+    background: linear-gradient(90deg, rgba(255, 0, 85, 0.25) 0%, rgba(180, 0, 50, 0.15) 100%);
+    border-left: 6px solid var(--accent-danger);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 0 30px rgba(255, 0, 85, 0.3);
+    animation: strobe-border 1.5s infinite;
+}
+
+@keyframes flash-critical {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.98); }
+}
+
+@keyframes strobe-border {
+    0%, 100% { border-left-color: #ff0055; box-shadow: 0 0 25px rgba(255, 0, 85, 0.4); }
+    50% { border-left-color: #ff7700; box-shadow: 0 0 40px rgba(255, 119, 0, 0.6); }
+}
+
+/* Metric Display Numbers */
+.metric-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+}
