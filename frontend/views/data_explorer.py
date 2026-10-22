@@ -124,16 +124,17 @@ def render_data_explorer_view():
 
     fig.update_layout(
         template="plotly_dark",
-        paper_bgcolor="rgba(11, 15, 25, 0.8)",
-        plot_bgcolor="rgba(15, 23, 42, 0.6)",
+        paper_bgcolor="rgba(2, 4, 10, 0.95)",
+        plot_bgcolor="rgba(8, 14, 28, 0.75)",
         height=600,
         margin=dict(l=40, r=40, t=40, b=40),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1, font=dict(family="JetBrains Mono", size=11)),
         hovermode="x unified",
     )
-    fig.update_yaxes(title_text="Count Rate (count/s)", row=1, col=1)
+    fig.update_xaxes(gridcolor="rgba(56, 189, 248, 0.08)", zerolinecolor="rgba(56, 189, 248, 0.15)")
+    fig.update_yaxes(title_text="Count Rate (count/s)", gridcolor="rgba(56, 189, 248, 0.08)", zerolinecolor="rgba(56, 189, 248, 0.15)", row=1, col=1)
     if show_hardness_ratio:
-        fig.update_yaxes(title_text="Hardness", row=2, col=1)
+        fig.update_yaxes(title_text="Hardness", gridcolor="rgba(56, 189, 248, 0.08)", zerolinecolor="rgba(56, 189, 248, 0.15)", row=2, col=1)
 
     st.plotly_chart(fig, use_container_width=True)
 
