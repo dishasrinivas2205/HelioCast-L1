@@ -89,17 +89,22 @@ def render_evaluation_hub_view():
         x = ["Forecasted Quiet", "Forecasted Flare"]
         y = ["Observed Quiet", "Observed Flare"]
 
-        fig_cm = ff.create_annotated_heatmap(
-            z,
-            x=x,
-            y=y,
-            colorscale=[[0, "#0b0f19"], [0.5, "#1e293b"], [1, "#00f0ff"]],
-            showscale=False,
+        fig_cm = go.Figure(
+            data=go.Heatmap(
+                z=z,
+                x=x,
+                y=y,
+                text=[[str(val) for val in row] for row in z],
+                texttemplate="%{text}",
+                textfont=dict(size=18, family="JetBrains Mono", color="#ffffff"),
+                colorscale=[[0, "#080e1c"], [0.5, "#0f172a"], [1, "#00f0ff"]],
+                showscale=False,
+            )
         )
         fig_cm.update_layout(
             template="plotly_dark",
-            paper_bgcolor="rgba(11, 15, 25, 0.8)",
-            plot_bgcolor="rgba(15, 23, 42, 0.6)",
+            paper_bgcolor="rgba(2, 4, 10, 0.95)",
+            plot_bgcolor="rgba(8, 14, 28, 0.75)",
             height=340,
             margin=dict(l=40, r=40, t=40, b=40),
         )
