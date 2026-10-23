@@ -41,14 +41,12 @@ def create_app() -> FastAPI:
 
     app.include_router(router)
 
-    @app.get("/")
-    def root():
-        return {
-            "title": "HelioCast-L1 Scientific API",
-            "version": __version__,
-            "docs": "/docs",
-            "health": "/api/v1/health",
-        }
+    # Static frontend mounting (Aether Deep Field Solar Observatory)
+    import os
+    from fastapi.staticfiles import StaticFiles
+    frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend"))
+    if os.path.exists(frontend_dir):
+        app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
 
     return app
 
